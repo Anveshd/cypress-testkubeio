@@ -3,21 +3,20 @@ describe('Example to Demostrate the use of skip in cypress', () => {
         cy.visit('https://wikipedia.org')
     })
 
-    it.skip('Validate Page Title', () => {
-        cy.title().should('eq', 'Wikipedia')
-    })
+    // Failed Test Case
+  it('should intentionally fail', () => {
+    cy.get('h1').should('contain', 'Incorrect Text'); // Intentional failure
+  });
 
-    it('Search for Google Wiki Page', () => {
-        cy.get('#searchInput').type('google')
-        cy.get('button[type="submit"]').click()
-    })
+  // Skipped Test Case
+  it('should be skipped under certain conditions', function () {
+    const shouldSkipTest = true;
 
-    it.skip('Validate Google Wiki Page has opened', () => {
-        cy.get('h1#firstHeading').contains('Google')
-        cy.title().should('eq', 'Google - Wikipedia')
-    })
-
-    it('should run only in certain conditions', function() {
+    if (shouldSkipTest) {
+      cy.log('Test skipped due to conditions');
       this.skip();
-    });
+    } else {
+      cy.get('h1').should('contain', 'Welcome to My App');
+    }
+  });
 })
