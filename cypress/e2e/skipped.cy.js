@@ -16,4 +16,11 @@ describe('Example to Demostrate the use of skip in cypress', () => {
         cy.get('h1#firstHeading').contains('Google')
         cy.title().should('eq', 'Google - Wikipedia')
     })
+
+    it('should run only in certain conditions', () => {
+      cy.log('Test skipped due to conditions');
+      this.skip();
+      }
+    })
+
 })
