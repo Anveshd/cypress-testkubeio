@@ -1,6 +1,12 @@
 describe('Example to Demostrate the use of skip in cypress', () => {
     before(() => {
+        if (true){
+cy.log('Skipping all tests due to conditions');
+      // Skip all tests by throwing an error
+      throw new Error('Skipping all tests');
+    } else {
         cy.visit('https://wikipedia.org')
+        }
     })
 
     // Failed Test Case
